@@ -9,9 +9,16 @@ R3 = 0.01307821
 R4 = 0.010720222
 
 
-# def profit_population(population):
-#     for i in range(len(population)):
-#         population[i].
+def avg_profit_population(population):
+    summary = 0
+    for i in range(len(population)):
+        weights = population[i].get_weights()
+        print(weights)
+        summary_one = weights[0]/100*R1+weights[1]/100*R2+weights[2]/100*R3+weights[3]/100*R4
+        summary += summary_one
+        print(summary_one/4)
+    return summary/100
+
 
 def start_population(count_units):
     population = []
@@ -35,14 +42,15 @@ if __name__ == "__main__":
     test.selection(count_selection)
     result = test.crossing()
     ka = 0
-    for i in range(50):
+    for i in range(100):
         test = Population(result)
         test.selection(count_selection)
         result = test.crossing()
+        avg_profit_population(result)
         ka = ka + 1
-        for i in range(len(result)):
-
-            print(i, " ", result[i].get_weights())
+        # for i in range(len(result)):
+        #
+        #     print(i, " ", result[i].get_weights())
 
 
 print(ka)
